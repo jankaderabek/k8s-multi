@@ -7,7 +7,7 @@ if [[ -z "$PULL_REQUEST" ]]; then
   exit 1
 fi
 
-PULL_REQUEST=v$PULL_REQUEST
+PULL_REQUEST=$PULL_REQUEST
 
 echo $PULL_REQUEST
 
