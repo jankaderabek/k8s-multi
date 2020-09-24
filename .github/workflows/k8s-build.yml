@@ -1,7 +1,8 @@
 name: Node.js CI
 
-on:
-  push:
+on: 
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
   build:
@@ -12,4 +13,4 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build
-      run: bash build.sh $(echo "$GITHUB_REF" | awk -F / '{print $3}')
+      run: bash build.sh ${{ github.event.number }}
