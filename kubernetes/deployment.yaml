@@ -5,6 +5,11 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 1
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
   selector:
     matchLabels:
       component: api-%pullRequest%
