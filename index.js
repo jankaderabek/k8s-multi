@@ -24,7 +24,7 @@ app.use('/api', routes)
 // error middleware
 app.use(errors)
 
-app.all("*", (req, res) => res.status(200).send("My Node.js API"));
+app.all("*", (req, res) => res.status(200).send("My Node.js API v1"));
 
 app.listen(config.port, '0.0.0.0', () => {
   console.log(`Server listening on port ${config.port}...`)
