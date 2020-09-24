@@ -11,4 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - run: bash build.sh $GITHUB_RUN_ID
+    - name: Build
+      run: bash build.sh $PR_NUMBER
+      env:
+        PR_NUMBER: ${{ github.event.number }}
