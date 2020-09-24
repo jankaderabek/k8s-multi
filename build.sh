@@ -1,0 +1,22 @@
+#!/bin/bash
+
+PULL_REQUEST=$1
+
+if [[ -z "$PULL_REQUEST" ]]; then
+  echo "Incorrect tag"
+  exit 1
+fi
+
+PULL_REQUEST=v$PULL_REQUEST
+
+echo $PULL_REQUEST
+
+docker build -t "glooby5/k8s-multi:${PULL_REQUEST}" .
+docker push "glooby5/k8s-multi:${PULL_REQUEST}"
+
+
+sed -e "s/%pullRequest%/${PULL_REQUEST}/g" kubernetes/deployment.yaml > kubernetes/build/deployment.yaml
+sed -e "s/%pullRequest%/${PULL_REQUEST}/g" kubernetes/service.yaml > kubernetes/build/service.yaml
+sed -e "s/%pullRequest%/${PULL_REQUEST}/g" kubernetes/ingress.yaml > kubernetes/build/ingress.yaml
+
+kubectl apply -f kubernetes/build
