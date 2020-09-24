@@ -4,6 +4,7 @@ metadata:
   name: api-deployment-%pullRequest%
 spec:
   replicas: 1
+  revisionHistoryLimit: 1
   selector:
     matchLabels:
       component: api-%pullRequest%
