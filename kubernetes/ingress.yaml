@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gke-test-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "gke-tutorial-ip"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/*
+            backend:
+              serviceName: api-cluster-ip-service
+              servicePort: 3001
+#  backend:
+#    serviceName: api-cluster-ip-service
+#    servicePort: 3001
