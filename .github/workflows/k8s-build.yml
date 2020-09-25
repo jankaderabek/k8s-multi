@@ -1,0 +1,16 @@
+name: Node.js CI
+
+on: 
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    timeout-minutes: 10
+    runs-on: [self-hosted]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      run: bash build.sh ${{ github.event.number }}

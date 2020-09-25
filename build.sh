@@ -7,7 +7,7 @@ if [[ -z "$PULL_REQUEST" ]]; then
   exit 1
 fi
 
-PULL_REQUEST=v$PULL_REQUEST
+PULL_REQUEST=$PULL_REQUEST
 
 echo $PULL_REQUEST
 
@@ -20,3 +20,4 @@ sed -e "s/%pullRequest%/${PULL_REQUEST}/g" kubernetes/service.yaml > kubernetes/
 sed -e "s/%pullRequest%/${PULL_REQUEST}/g" kubernetes/ingress.yaml > kubernetes/build/ingress.yaml
 
 kubectl apply -f kubernetes/build
+kubectl rollout restart deploy api-deployment-${PULL_REQUEST}
