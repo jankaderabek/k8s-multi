@@ -11,8 +11,8 @@ PULL_REQUEST=$PULL_REQUEST
 
 echo $PULL_REQUEST
 
-docker build -t "glooby5/k8s-multi:${PULL_REQUEST}" .
-docker push "glooby5/k8s-multi:${PULL_REQUEST}"
+docker build -t "localhost:5000/k8s-multi:${PULL_REQUEST}" .
+docker push "localhost:5000/k8s-multi:${PULL_REQUEST}"
 
 
 sed -e "s/%pullRequest%/${PULL_REQUEST}/g" kubernetes/deployment.yaml > kubernetes/build/deployment.yaml

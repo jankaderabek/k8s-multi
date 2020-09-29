@@ -5,11 +5,6 @@ metadata:
 spec:
   replicas: 1
   revisionHistoryLimit: 1
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
   selector:
     matchLabels:
       component: api-%pullRequest%
@@ -19,8 +14,8 @@ spec:
         component: api-%pullRequest%
     spec:
       containers:
-        -   name: api-%pullRequest%
-            image: glooby5/k8s-multi:%pullRequest%
-            imagePullPolicy: Always
-            ports:
-              - containerPort: 3001
+        - name: api-%pullRequest%
+          image: localhost:5000/k8s-multi:%pullRequest%
+          imagePullPolicy: Always
+          ports:
+             - containerPort: 3001
